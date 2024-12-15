@@ -1,0 +1,21 @@
+<configuration>
+
+    <appender name="simpleConsoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="elasticAppender" class="com.github.dgawlik.logrelay.lib.ElasticAppender">
+        <host>localhost</host>
+        <port>9200</port>
+        <apiKey>ZVFKbXlwTUJoQUxDanpDMDVkNWs6TE55QnJNZHhRbS1fTDNjMHZ4SXp5Zw==</apiKey>
+        <service>my-app</service>
+        <kind>backend</kind>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="simpleConsoleAppender"/>
+        <appender-ref ref="elasticAppender"/>
+    </root>
+</configuration>

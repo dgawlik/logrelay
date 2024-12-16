@@ -6,16 +6,32 @@
         </encoder>
     </appender>
 
-    <appender name="elasticAppender" class="com.github.dgawlik.logrelay.lib.ElasticAppender">
-        <host>localhost</host>
-        <port>9200</port>
-        <apiKey>ZVFKbXlwTUJoQUxDanpDMDVkNWs6TE55QnJNZHhRbS1fTDNjMHZ4SXp5Zw==</apiKey>
-        <service>my-app</service>
-        <kind>backend</kind>
+    <!--    <appender name="elasticAppender" class="com.github.dgawlik.logrelay.lib.ElasticAppender">-->
+    <!--        <host>localhost</host>-->
+    <!--        <port>9200</port>-->
+    <!--        <apiKey>ZVFKbXlwTUJoQUxDanpDMDVkNWs6TE55QnJNZHhRbS1fTDNjMHZ4SXp5Zw==</apiKey>-->
+    <!--        <service>my-app</service>-->
+    <!--        <kind>backend</kind>-->
+    <!--    </appender>-->
+
+    <appender name="jsonAppender" class="ch.qos.logback.core.FileAppender">
+        <file>/home/john/Code/logrelay/logs/app.log</file>
+        <encoder class="ch.qos.logback.classic.encoder.JsonEncoder">
+            <withFormattedMessage>true</withFormattedMessage>
+            <withMessage>false</withMessage>
+            <withArguments>false</withArguments>
+            <providers>
+                <mdc/>
+                <timestamp/>
+                <callerData/>
+                <logLevel />
+                <keyValuePairs />
+            </providers>
+        </encoder>
     </appender>
 
     <root level="INFO">
-        <appender-ref ref="simpleConsoleAppender"/>
-        <appender-ref ref="elasticAppender"/>
+        <!--        <appender-ref ref="simpleConsoleAppender"/>-->
+        <appender-ref ref="jsonAppender"/>
     </root>
 </configuration>
